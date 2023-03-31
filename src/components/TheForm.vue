@@ -10,6 +10,10 @@ let email = ref("");
 const showAlert = ref(false);
 const alertMessage = ref("");
 
+let closeAlert = () => {
+    showAlert.value = false;
+}
+
 let handleSubmit = async () => {
   try {
     // Check if the name and email pair already exist
@@ -17,8 +21,10 @@ let handleSubmit = async () => {
     const querySnapshot = await getDocs(q);
     if (querySnapshot.size > 0) {
       // Display an alert message if a duplicate record was found
+      firstName.value = "";
+      email.value = "";
       showAlert.value = true;
-      alertMessage.value = 'A record with this name and email already exists.';
+      alertMessage.value = 'Oops. A record with this name & email already exists.';
     } else {
       // If no duplicate record was found, add the new subscriber to Firestore
       const subscriber = {
@@ -27,6 +33,7 @@ let handleSubmit = async () => {
         timestamp: Date.now(),
       };
       console.log("Trying to add subscriber to database...");
+
       await addDoc(collection(db, "waitlist"), subscriber);
       console.log("Subscriber added successfully!");
       console.log("Form submitted!");
@@ -104,9 +111,15 @@ let submitForm = () => {
         />
       </div>
 
-      <button type="submit">Gimme!</button>
+      <button class="submit" type="submit">Gimme!</button>
     </form>
-    <div v-if="showAlert" class="alert">{{ alertMessage }}</div>
+    
+    <div v-if="showAlert" class="alert">
+      <span>{{ alertMessage }}</span>
+      <button @click="closeAlert" class="alert-close-btn">
+        <font-awesome-icon icon="fa-solid fa-times" style="color: #ffffff;" />
+      </button>
+    </div>
   </div>
 </template>
 
@@ -124,6 +137,17 @@ let submitForm = () => {
   font-weight: bold;
   z-index: 9999;
 }
+
+.alert-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: none;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -168,7 +192,7 @@ input {
 }
 
 
-button {
+.submit {
   max-width: 420px;
   width: 100%;
   padding: 11px 11px 11px 11px;
