@@ -1,6 +1,6 @@
 <script setup>
 import { ref, inject } from "vue";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 
 const db = inject("db");
 
@@ -11,23 +11,32 @@ const showAlert = ref(false);
 const alertMessage = ref("");
 
 let handleSubmit = async () => {
-  const subscriber = {
-    firstName: firstName.value,
-    email: email.value,
-    timestamp: Date.now(),
-  };
-
   try {
-    console.log("Trying to add submission to Firestore...");
-    await addDoc(collection(db, "waitlist"), {
-      subscriber,
-    });
-    console.log("Submission added to Firestore successfully!");
-    firstName.value = "";
-    email.value = "";
-    showAlert.value = true;
-    alertMessage.value =
-      "Successfully added to Waitlist. You will receive the guide as soon as it is released!";
+    // Check if the name and email pair already exist
+    const q = query(collection(db, 'waitlist'), where('name', '==', firstName.value), where('email', '==', email.value));
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.size > 0) {
+      // Display an alert message if a duplicate record was found
+      showAlert.value = true;
+      alertMessage.value = 'A record with this name and email already exists.';
+    } else {
+      // If no duplicate record was found, add the new subscriber to Firestore
+      const subscriber = {
+        name: firstName.value,
+        email: email.value,
+        timestamp: Date.now(),
+      };
+      console.log("Trying to add subscriber to database...");
+      await addDoc(collection(db, "waitlist"), subscriber);
+      console.log("Subscriber added successfully!");
+      console.log("Form submitted!");
+      firstName.value = "";
+      email.value = "";
+      showAlert.value = true;
+      alertMessage.value =
+        "Successfully added to Waitlist. You will receive the guide as soon as it is released!";
+        
+    }
   } catch (error) {
     console.error("Error adding submission: ", error);
   }
@@ -48,7 +57,6 @@ let validateEmail = () => {
 };
 
 let submitForm = () => {
-  console.log("Form submitted!");
   if (validateEmail()) {
     handleSubmit();
   }
@@ -98,11 +106,24 @@ let submitForm = () => {
 
       <button type="submit">Gimme!</button>
     </form>
-    <div class="alert" v-if="showAlert">{{ alertMessage }}</div>
+    <div v-if="showAlert" class="alert">{{ alertMessage }}</div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  z-index: 9999;
+}
 .container {
   display: flex;
   flex-direction: column;
