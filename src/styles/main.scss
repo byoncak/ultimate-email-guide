@@ -1,0 +1,94 @@
+html {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  background-color: #1F1F1F;
+  overflow-y: hidden;
+}
+
+#app {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+//TYPOGRAPHY
+:root {
+  --fs-norm: clamp(0.8rem, 2vw, 1.4rem);
+  --fs-small: clamp(.75rem, 1.6vw, 1rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 120%;
+  /* or 83px */
+  letter-spacing: 0.04em;
+  color: #FFFFFF
+}
+
+h2 {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 120%;
+  /* or 83px */
+
+  letter-spacing: 0.04em;
+  color: #323232
+}
+
+p {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 200;
+  font-size: 24px;
+  line-height: 120%;
+  /* identical to box height, or 28px */
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+}
+
+input {
+  width: 584px;
+  height: 64px;
+  left: 572px;
+  top: 702px;
+  color: white;
+  background: #323232;
+  border-radius: 64px;
+  stroke: none;
+}
+
+input[type="text"] {
+  background: #323232;
+  color: white;
+}
+
+input:-webkit-autofill {
+  background: #323232;
+  color: white;
+}
