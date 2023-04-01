@@ -1,7 +1,8 @@
 <template>
   <div class="thank-you">
     <h1>Thank you for subscribing!</h1>
-    <p>You'll receive our ultimate email guide as soon as it's released.</p>
+    <p>You'll receive my Email Automation Guide as soon as it's released (April 23rd)</p>
+  
   </div>
 </template>
 
@@ -9,7 +10,7 @@
 .thank-you {
   max-width: 600px;
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
   padding: 48px;
 }
 

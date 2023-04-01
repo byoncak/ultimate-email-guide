@@ -10,6 +10,10 @@
   color: #2c3e50;
 }
 
+body {
+    font-family: 'Kanit', sans-serif;
+  }
+
 nav {
   padding: 30px;
 

@@ -10,6 +10,7 @@ const router = useRouter()
 let firstName = ref("");
 let email = ref("");
 
+const consent = ref(false)
 const showAlert = ref(false);
 const alertMessage = ref("");
 
@@ -20,16 +21,16 @@ let closeAlert = () => {
 let handleSubmit = async () => {
   try {
     // Check if the name and email pair already exist
-    const q = query(collection(db, 'waitlist'), where('name', '==', firstName.value), where('email', '==', email.value));
+    const q = query(collection(db, 'waitlist'), where('email', '==', email.value));
     const querySnapshot = await getDocs(q);
     if (querySnapshot.size > 0) {
       // Display an alert message if a duplicate record was found
       firstName.value = "";
       email.value = "";
       showAlert.value = true;
-      alertMessage.value = 'Oops. A record with this name & email already exists.';
+      alertMessage.value = 'Oops. A record with this email already exists.';
     } else {
-      // If no duplicate record was found, add the new subscriber to Firestore
+      // If no duplicate record was found and consent is given, add the new subscriber to Firestore
       const subscriber = {
         name: firstName.value,
         email: email.value,
@@ -63,9 +64,12 @@ let validateEmail = () => {
 };
 
 let submitForm = () => {
-  if (validateEmail()) {
+  if (validateEmail() && consent.value) {
     handleSubmit();
     router.push({ name: 'ThankYou' })
+  } else {
+    alertMessage.value = 'Please give your consent to receive emails before submitting the form.'; // show error message
+    showAlert.value = true;
   }
 };
 </script>
@@ -77,14 +81,15 @@ let submitForm = () => {
         <!-- <h2>THE ONLY</h2> -->
         <p>THE ULTIMATE</p>
 
+
         <h1>
           EMAIL <br />
-          AUTOMATION <br />
+          GROWTH <br />
           GUIDE
         </h1>
         <!-- <h2>YOU NEED.</h2> -->
       </div>
-      <p>Get INSTANT access April 23rd.</p>
+      <p>Get instant access April 23rd:</p>
     </div>
     <form @submit.prevent="submitForm">
       <div class="input-container">
@@ -110,6 +115,10 @@ let submitForm = () => {
           placeholder="Email"
         />
       </div>
+      <label class="opt-in">
+        <input type="checkbox" v-model="consent" class="checkbox" />
+        I agree to be sent helpful emails from you.
+      </label>
 
       <button class="submit" type="submit">Gimme!</button>
     </form>
@@ -174,11 +183,24 @@ form {
   font-size: inherit;
   font-family: inherit;
   line-height: inherit;
+  max-width: 420px;
 }
 
 input {
   color-scheme: dark;
-  max-width: 420px;
+}
+
+.opt-in {
+  display: inline-flex;
+  align-items: center;
+  color: white;
+}
+
+.checkbox {
+  max-width: 23px;
+  border: none;
+  color: #3AE04B;
+  margin: 0px 16px 0px 0px ;
 }
 
 .heading {
@@ -187,8 +209,8 @@ input {
 }
 
 .meat {
-  margin: 8px 0 8px 0px;
-  max-width: 420px;
+  margin: 4px 0 23px 0px;
+  max-width: 420px; 
 }
 
 
@@ -196,7 +218,7 @@ input {
   max-width: 420px;
   width: 100%;
   padding: 11px 11px 11px 11px;
-  margin-top: 23px;
+  margin-top: 8px;
   border-radius: 64px;
   color: #232323;
   background-color: #3AE04B;
