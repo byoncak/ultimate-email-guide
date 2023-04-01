@@ -1,8 +1,11 @@
 <script setup>
 import { ref, inject } from "vue";
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import { useRouter } from 'vue-router'
+
 
 const db = inject("db");
+const router = useRouter()
 
 let firstName = ref("");
 let email = ref("");
@@ -39,10 +42,6 @@ let handleSubmit = async () => {
       console.log("Form submitted!");
       firstName.value = "";
       email.value = "";
-      showAlert.value = true;
-      alertMessage.value =
-        "Successfully added to Waitlist. You will receive the guide as soon as it is released!";
-        
     }
   } catch (error) {
     console.error("Error adding submission: ", error);
@@ -66,6 +65,7 @@ let validateEmail = () => {
 let submitForm = () => {
   if (validateEmail()) {
     handleSubmit();
+    router.push({ name: 'ThankYou' })
   }
 };
 </script>
