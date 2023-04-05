@@ -41,7 +41,7 @@ h1 {
   font-style: normal;
   font-weight: 800;
   font-size: 64px;
-  line-height: 120%;
+  line-height: 100%;
   /* or 83px */
   letter-spacing: 0.04em;
   color: #FFFFFF
@@ -50,12 +50,12 @@ h1 {
 h2 {
   font-style: normal;
   font-weight: 800;
-  font-size: 32px;
+  font-size: 23px;
   line-height: 120%;
   /* or 83px */
 
   letter-spacing: 0.04em;
-  color: #323232
+  color: #FFFFFF
 }
 
 p {
@@ -69,7 +69,7 @@ p {
 }
 
 input {
-  width: 584px;
+  width: 100%;
   height: 64px;
   left: 572px;
   top: 702px;

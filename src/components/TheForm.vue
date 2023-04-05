@@ -76,60 +76,70 @@ let submitForm = () => {
 
 <template>
   <div class="container">
-    <div class="heading">
-      <div class="meat">
-        <!-- <h2>THE ONLY</h2> -->
-        <p>THE ULTIMATE</p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="heading">
+          <div class="meat">
+            <!-- <h2>THE ONLY</h2> -->
+            <h2>THE ULTIMATE</h2>
 
-
-        <h1>
-          EMAIL <br />
-          GROWTH <br />
-          GUIDE
-        </h1>
-        <!-- <h2>YOU NEED.</h2> -->
-      </div>
-      <p>Get instant access April 23rd:</p>
-    </div>
-    <form @submit.prevent="submitForm">
-      <div class="input-container">
-        <font-awesome-icon class="i" icon="fa-regular fa-user" style="color: #ffffff;" />        
-        <input
-          type="text"
-          id="first-name"
-          v-model="firstName"
-          required
-          class="my-input"
-          placeholder="First Name"
-        />
-      </div>
+            <h1>
+              EMAIL <br />
+              GROWTH <br />
+              GUIDE
+            </h1>
+            <!-- <h2>YOU NEED.</h2> -->
+          </div>
+          
+          <p>Get instant access April 10th:</p>
+      </div>  
       
-      <div class="input-container">
-        <font-awesome-icon class="i" icon="fa-regular fa-envelope" style="color: #ffffff;" />        
-        <input
-          type="email"
-          id="email"
-          v-model="email"
-          required
-          class="my-input"
-          placeholder="Email"
-        />
-      </div>
-      <label class="opt-in">
-        <input type="checkbox" v-model="consent" class="checkbox" />
-        I agree to be sent helpful emails from you.
-      </label>
+      <form @submit.prevent="submitForm">
+        <div class="input-container">
+          <font-awesome-icon class="i" icon="fa-regular fa-user" style="color: #ffffff;" />        
+         
+          <input
+            type="text"
+            id="first-name"
+            v-model="firstName"
+            required
+            class="my-input"
+            placeholder="First Name"
+          />
+        </div>
+      
+        <div class="input-container">
+          <font-awesome-icon class="i" icon="fa-regular fa-envelope" style="color: #ffffff;" />        
+          
+          <input
+            type="email"
+            id="email"
+            v-model="email"
+            required
+            class="my-input"
+            placeholder="Email"
+          />
+        </div>
+        
+        <label class="opt-in">
+          <input type="checkbox" v-model="consent" class="checkbox" />
+        
+          I agree to be sent helpful emails from you.
+        </label>
 
-      <button class="submit" type="submit">Gimme!</button>
-    </form>
+        <button class="submit" type="submit">Gimme!</button>
+      </form>
     
-    <div v-if="showAlert" class="alert">
-      <span>{{ alertMessage }}</span>
-      <button @click="closeAlert" class="alert-close-btn">
-        <font-awesome-icon icon="fa-solid fa-times" style="color: #ffffff;" />
-      </button>
+      <div v-if="showAlert" class="alert">
+        <span>{{ alertMessage }}</span>
+        
+        <button @click="closeAlert" class="alert-close-btn">
+          <font-awesome-icon icon="fa-solid fa-times" style="color: #ffffff;" />
+        </button>
+      </div>
     </div>
   </div>
+</div>
 </template>
 
 <style lang="scss" scoped>
@@ -158,6 +168,7 @@ let submitForm = () => {
 }
 
 .container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -170,7 +181,7 @@ form {
   display: flex;
   flex-direction: column;
   row-gap: 8px;
-  padding: 0 100px 0 100px;
+  padding: 0;
   align-items: center;
   justify-content: center;
   margin-top: 32px;
@@ -180,10 +191,15 @@ form {
   outline: none;
   padding: 0 3.5rem 0 3.5rem;
   margin: 0;
-  font-size: inherit;
   font-family: inherit;
   line-height: inherit;
+  width: 100%;
   max-width: 420px;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
 }
 
 input {
@@ -194,6 +210,7 @@ input {
   display: inline-flex;
   align-items: center;
   color: white;
+  width: 100%;
 }
 
 .checkbox {
@@ -209,10 +226,9 @@ input {
 }
 
 .meat {
-  margin: 4px 0 23px 0px;
+  margin: 8px 0 0px 0px;
   max-width: 420px; 
 }
-
 
 .submit {
   max-width: 420px;
@@ -234,10 +250,6 @@ input {
   }
 }
 
-.input-container {
-  position: relative;
-}
-
 .i {
   position: absolute;
   top: 50%;
@@ -248,4 +260,68 @@ input {
   color: #ccc;
   padding-left: 1rem;
 }
+
+label {
+  font-size: 14px;
+  padding: 0px;
+}
+
+  /* Small screens (up to 576px) */
+  @media (max-width: 576px) {
+    .container {
+      max-width: 100%;
+      padding: 8px 8px;
+    }
+
+    form {
+      padding: 0;
+    }
+
+    .i {
+      padding: 0px 0px 0px 23x;
+    }
+
+    .my-input {
+      margin: 0 16px 0 4px;
+    }
+
+    input {
+      font-size: 14px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 40px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+    label {
+      width: 100%;
+      font-size: 11px;
+    }
+
+    .checkbox {
+      margin: 0 8px 0 0;
+      width: 16px;
+    }
+  }
+
+  /* Medium screens (577px to 991px) */
+  @media (min-width: 577px) and (max-width: 991px) {
+    .container {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
+  }
+
+  /* Large screens (992px and up) */
+  @media (min-width: 992px) {
+    .container {
+      max-width: 1170px;
+      margin: 0 auto;
+    }
+  }
 </style>
