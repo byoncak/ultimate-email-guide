@@ -1,5 +1,6 @@
 <template>
   <div class="thank-you">
+    <div class="container">
     <h1>Thank you for subscribing!</h1>
     
     <p> <br> Woooo! 🎉 <br>
@@ -13,6 +14,17 @@
       -Brett
     </p>
   </div>
+
+  <div class="social-icons">
+    <a href="https://instagram.com/brettyoncak" target="_blank" rel="noopener">
+      <font-awesome-icon class="i" icon="fa-brands fa-instagram" />
+    </a>
+    
+    <a href="https://twitter.com/needmorejpegs" target="_blank" rel="noopener">
+      <font-awesome-icon class="i" icon="fa-brands fa-twitter" />
+    </a>
+  </div>
+</div>
 </template>
 
 <style scoped>
@@ -21,6 +33,14 @@
   margin: 0 auto;
   text-align: left;
   padding: 48px;
+}
+
+.i {
+  width: 16px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #ccc;
+  padding-left: 1rem;
 }
 
 h1 {
@@ -33,6 +53,10 @@ h1 {
 p {
   font-size: 24px;
   margin-bottom: 48px;
+}
+
+.social-icons {
+  align-items: left;
 }
 
   /* Small screens (up to 576px) */

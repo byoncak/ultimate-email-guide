@@ -12,6 +12,7 @@ import "@/styles/global.scss";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 
@@ -29,7 +30,7 @@ initializeApp(firebaseConfig);
 
 const db = getFirestore();
 
-library.add(faUser, faEnvelope, faTimes)
+library.add(faUser, faEnvelope, faTimes, faInstagram, faTwitter)
 
 const app = createApp(App);
 
