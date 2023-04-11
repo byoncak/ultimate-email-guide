@@ -315,6 +315,11 @@ label {
       max-width: 100%;
       padding: 0 1rem;
     }
+
+    label {
+      width: 100%;
+      font-size: 12px;
+    }
   }
 
   /* Large screens (992px and up) */
@@ -322,6 +327,11 @@ label {
     .container {
       max-width: 1170px;
       margin: 0 auto;
+    }
+
+    label {
+      width: 100%;
+      font-size: 12px;
     }
   }
 </style>
