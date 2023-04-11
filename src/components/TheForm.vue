@@ -91,7 +91,7 @@ let submitForm = () => {
             <!-- <h2>YOU NEED.</h2> -->
           </div>
           
-          <p>Get instant access April 10th:</p>
+          <p>Available Now!</p>
       </div>  
       
       <form @submit.prevent="submitForm">

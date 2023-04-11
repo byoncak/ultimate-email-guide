@@ -5,11 +5,11 @@
     
     <p> <br> Woooo! 🎉 <br>
       <br>
-      THANKS so much for joining the Waitlist!<br>
+      THANKS so much for requesting my first ever e-book!<br>
       <br>
-      I'll send you my Email Growth Guide <br>the second it's released! <br>
+      Check your inbox for my Email Growth Guide <br> it's probably already there! <br>
       <br>
-      (April 10th) <br>
+      (if not, don't forget to check your "Promotions" or "Spam" folders) <br>
       <br>
       -Brett
     </p>
